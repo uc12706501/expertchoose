@@ -170,5 +170,4 @@ public:
     }
 };
 
-
 #endif // AHP_H_INCLUDED
