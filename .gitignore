@@ -1,4 +1,5 @@
-/code/ExpertChoose/obj
-/code/ExpertChoose/debug
+/code/ExpertChoose/obj/
+/code/ExpertChoose/debug/
 
-code/ExpertChoose/ExpertChoose.layout
+/code/ExpertChoose/ExpertChoose.layout
+/code/ExpertChoose/bin/
