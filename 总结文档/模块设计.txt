@@ -1,0 +1,12 @@
+Class Layer //每个层次就是一个Layer对象
+	int Layercount //表示第几层，方法或者属性
+	Layer Parent //表示上一层
+	List<Element> Elements //每个因素就是一个Element对象，一个层次中有多个因素
+
+	Matrix MapToUpperLayer //本层次与上一层的影响关系矩阵，
+	Matrix TotalSortWeightVector() //计算本层次各个元素的总排序权重向量
+	Matrix SingleSortWeightMatrix() //计算本层次对于上一层各个元素的单排序权重矩阵
+	List<Matrix> JudgeMatrix //本层次的对于上一层的成对比较矩阵
+
+	AddElement(Element) //添加一个元素，修改Elements，MapToUpperLayer ，TotalSortWeightVector ，SingleSortWeightMatrix 
+	RemoveElement(Element)
