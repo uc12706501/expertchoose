@@ -1,12 +1,45 @@
-Class Layer //每个层次就是一个Layer对象
-	int Layercount //表示第几层，方法或者属性
-	Layer Parent //表示上一层
-	List<Element> Elements //每个因素就是一个Element对象，一个层次中有多个因素
+Class Level//每个层次就是一个Layer对象
+	int id
+	Layer Parent //表示上一层，null表示最顶层
+	List<Factor> Elements //每个因素就是一个Element对象，一个层次中有多个因素
+	int currentLayer() //当前是第几层，可以递归实现
 
+	Map<Factor,Matrix> JudgeMatrix //本层次的对于上一层中Element元素的成对比较矩阵
 	Matrix MapToUpperLayer //本层次与上一层的影响关系矩阵，
 	Matrix TotalSortWeightVector() //计算本层次各个元素的总排序权重向量
 	Matrix SingleSortWeightMatrix() //计算本层次对于上一层各个元素的单排序权重矩阵
-	List<Matrix> JudgeMatrix //本层次的对于上一层的成对比较矩阵
 
-	AddElement(Element) //添加一个元素，修改Elements，MapToUpperLayer ，TotalSortWeightVector ，SingleSortWeightMatrix 
-	RemoveElement(Element)
+	AddElement(Factor) //添加一个元素，更新Elements，MapToUpperLayer ，TotalSortWeightVector ，SingleSortWeightMatrix ，DecisionMatrix
+	RemoveElement(Factor) //移除一个元素，更新
+
+	Matrix DecisionMatrix() //决策矩阵
+	void InputDecisionMatrix() //根据本层次的元素，输入决策矩阵
+
+Class Factor
+	int id
+	string name //元素的名称
+	enum direction //元素的方向，正向和逆向
+
+Class Matrix
+	int const x,y //定义矩阵的最大维数
+	List<List<int>> innerData //实际存储数据的二维数组，并提供getter和setter方法
+	int getx/y //获取x，y的值
+	SetValue(int x,int y,int value) //设置矩阵中某个位置的值
+	GetValue(int x,int y) //获取某个位置的值
+	InsertData() //导入数据，可以使用不同的方法
+	Display() //打印数组
+
+	//矩阵的相加，矩阵点乘，矩阵相乘
+	GetMaxValue(int xa,int xb,int ya,int yb,out int x,out int y) //获取最大元素值
+	GetSum(int xa,int xb,int ya,int yb) //获取一个区域内的和
+	Matrx GetSub(int xa,int xb,int ya, int yb) //获得一个子集
+	void power(out int ,out Matrix) //计算最大特征值和特征向量
+	void Transpose() //矩阵转置
+	
+IMatrixInput //矩阵输入的接口，可以通过不同方式进行输入，便于演示
+IJudgeMatrixInput //成对比矩阵的输入接口，可以直接输入，或者使用一种优化的方式进行输入
+
+
+-------------------待处理----------------------
+层次单排序及其一致性检验
+层次总排序及其一致性检验
